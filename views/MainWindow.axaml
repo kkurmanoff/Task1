@@ -1,0 +1,86 @@
+<!-- MainWindow.axaml -->
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Background="#2D2D30"
+        x:Class="DateApp.MainWindow"
+        Title="DateApp">
+    <Window.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#404040"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#3D3D3D"/>
+        </Style>
+        
+        <Style Selector="Button">
+            <Setter Property="Padding" Value="12 8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="20" Background="#2D2D30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+                  Text="Дата Калькулятор" 
+                  FontSize="24" 
+                  Foreground="White"
+                  Margin="0 0 0 20"/>
+        
+        <!-- Основная дата -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10">
+            <TextBox x:Name="DayTextBox" Width="80" Watermark="День"/>
+            <TextBox x:Name="MonthTextBox" Width="80" Watermark="Месяц"/>
+            <TextBox x:Name="YearTextBox" Width="100" Watermark="Год"/>
+            <Button Content="Обновить дату" Click="UpdateDate_Click" Margin="10 0 0 0"/>
+            <TextBlock x:Name="WeekDayTextBlock" 
+                Foreground="#4CAF50"
+                Margin="10 0 0 0"/>
+        </StackPanel>
+
+        <!-- Добавление дней, месяцев, лет -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10" Margin="0 15">
+            <TextBox x:Name="AddDaysTextBox" Width="80" Watermark="Дней"/>
+            <TextBox x:Name="AddMonthsTextBox" Width="80" Watermark="Месяцев"/>
+            <TextBox x:Name="AddYearsTextBox" Width="80" Watermark="Лет"/>
+            <Button Content="Добавить" Click="Add_Click"/>
+        </StackPanel>
+
+        <!-- Кнопки действий -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="10" Margin="0 15">
+            <Button Content="Проверить" Click="Validate_Click"/>
+        </StackPanel>
+
+        <!-- Результаты -->
+        <StackPanel Grid.Row="4" Orientation="Vertical" Spacing="10">
+            <!-- Дни в месяце -->
+            <Border Background="#3D3D3D" Padding="10">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBox x:Name="MonthForDaysTextBox" Width="80" Watermark="Месяц"/>
+                    <TextBox x:Name="YearForDaysTextBox" Width="100" Watermark="Год"/>
+                    <Button Content="Вычислить" Click="CalculateDays_Click"/>
+                    <TextBlock x:Name="DaysResultTextBlock" Foreground="#4CAF50"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Результат операций -->
+            <Border Background="#3D3D3D" Padding="10">
+                <TextBlock x:Name="ResultTextBlock" Foreground="White"/>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>
